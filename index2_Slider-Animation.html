@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filao Property Management</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+      body {
+        background: #f7f7f7;
+        color: #333;
+        scroll-behavior: smooth;
+      }
+
+      header {
+        background: #00695c;
+        color: white;
+        padding: 1.5rem;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      nav {
+        background: #004d40;
+        text-align: center;
+        padding: 0.8rem;
+      }
+      nav a {
+        color: white;
+        margin: 0 15px;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .hero {
+        text-align: center;
+        padding: 3rem 1rem;
+        background: url("https://images.unsplash.com/photo-1501183638710-841dd1904471")
+          no-repeat center center / cover;
+        color: white;
+      }
+      .hero h2 {
+        font-size: 2.2rem;
+        background: rgba(0, 0, 0, 0.5);
+        display: inline-block;
+        padding: 1rem;
+        border-radius: 6px;
+        animation: fadeInDown 1s ease-out;
+      }
+
+      .section {
+        padding: 2rem;
+        max-width: 1200px;
+        margin: auto;
+        animation: fadeInUp 1s ease-in-out;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .card {
+        background: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+      }
+      .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+      .card-content {
+        padding: 1rem;
+      }
+
+      .booking-form {
+        background: white;
+        padding: 2rem;
+        max-width: 400px;
+        margin: 2rem auto;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+      .booking-form h3 {
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+      .booking-form label {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+      }
+      .booking-form input {
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .booking-form button {
+        padding: 0.75rem;
+        background: #00695c;
+        color: white;
+        border: none;
+        width: 100%;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      iframe {
+        width: 100%;
+        height: 300px;
+        border: none;
+        border-radius: 8px;
+        margin-top: 1rem;
+      }
+
+      footer {
+        background: #263238;
+        color: white;
+        text-align: center;
+        padding: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .whatsapp-float {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 999;
+      }
+
+      .whatsapp-float img {
+        width: 50px;
+        height: 50px;
+      }
+
+      .testimonials h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #004d40;
+      }
+
+      .testimonial-cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: center;
+      }
+
+      .testimonial-card {
+        background: #ffffff;
+        border-left: 4px solid #00695c;
+        border-radius: 8px;
+        padding: 1.5rem 1.2rem;
+        width: 300px;
+        position: relative;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease;
+      }
+      .testimonial-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .quote-icon {
+        color: #009688;
+        font-size: 1.5rem;
+        position: absolute;
+        top: 1.2rem;
+        left: 1rem;
+      }
+
+      .testimonial-text {
+        font-style: italic;
+        margin: 1rem 0 0.5rem 0;
+      }
+
+      .testimonial-author {
+        font-weight: bold;
+        color: #555;
+        font-size: 0.95rem;
+      }
+
+      .image-slider {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+      }
+      .image-slider img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        position: absolute;
+        opacity: 0;
+        animation: fadeSlider 12s infinite;
+      }
+      .image-slider img:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .image-slider img:nth-child(2) {
+        animation-delay: 4s;
+      }
+      .image-slider img:nth-child(3) {
+        animation-delay: 8s;
+      }
+
+      .faq h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #004d40;
+      }
+      .faq-item {
+        background: #fff;
+        margin-bottom: 1rem;
+        border-radius: 6px;
+        padding: 1rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+      .faq-item summary {
+        font-weight: bold;
+        color: #00695c;
+        cursor: pointer;
+      }
+      .faq-item[open] {
+        background: #e0f2f1;
+      }
+
+      .contact-form {
+        background: #ffffff;
+        padding: 2rem;
+        max-width: 500px;
+        margin: 2rem auto;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+        transition: 0.3s ease;
+      }
+
+      .input-group {
+        position: relative;
+        margin-bottom: 1.5rem;
+      }
+
+      .input-group i {
+        position: absolute;
+        top: 50%;
+        left: 12px;
+        transform: translateY(-50%);
+        color: #999;
+      }
+
+      .input-group input,
+      .input-group textarea {
+        width: 100%;
+        padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 1rem;
+        transition: border 0.3s ease;
+      }
+
+      .input-group input:focus,
+      .input-group textarea:focus {
+        border-color: #00695c;
+        outline: none;
+      }
+
+      .contact-form button {
+        width: 100%;
+        padding: 0.75rem;
+        background: #00695c;
+        color: white;
+        border: none;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .contact-form button:hover {
+        background: #004d40;
+      }
+
+      @keyframes fadeSlider {
+        0% {
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        30% {
+          opacity: 1;
+        }
+        40% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .hero h2 {
+          font-size: 1.5rem;
+          padding: 0.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Filao Property Management</h1>
+      <p>Comfortable & Affordable Business Stays in Port Louis</p>
+    </header>
+
+    <nav>
+      <a href="#apartments">Apartments</a>
+      <a href="#booking">Book Now</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <section class="hero">
+      <h2>Perfect for Shipping, Gas & Export Companies’ Teams</h2>
+    </section>
+
+    <section class="section" id="apartments">
+      <h2>Our Apartments</h2>
+      <div class="cards">
+        <!-- Apartment 1 -->
+        <div class="card">
+          <div class="image-slider">
+            <img
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
+              alt="Executive Apartment 1"
+            />
+            <img
+              src="https://bestluxury.properties/wp-content/uploads/2024/10/Cove-Edition-2_5.jpg"
+              alt="Executive Apartment 2"
+            />
+            <img
+              src="https://www.brickunderground.com/sites/default/files/blog/images/Kaufu1605_MiMA-2_2084_HR_0.jpg"
+              alt="Executive Apartment 3"
+            />
+          </div>
+          <div class="card-content">
+            <h3>Executive 2BR Apartment</h3>
+            <p>
+              Spacious, fully furnished, ideal for corporate teams. Includes AC,
+              terrace, and high-speed WiFi.
+            </p>
+          </div>
+        </div>
+
+        <!-- Apartment 2 -->
+        <div class="card">
+          <div class="image-slider">
+            <img
+              src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2"
+              alt="Studio Apartment 1"
+            />
+            <img
+              src="https://cdn.home-designing.com/wp-content/uploads/2016/11/grey-slate-tile-feature-wall-modern-apartment.jpg"
+              alt="Studio Apartment 2"
+            />
+            <img
+              src="https://images1.apartments.com/i2/K3aZdMFLE9l8tcEb7KIpjpBipOLSAolbsGgFNVWdFl4/117/image.jpg"
+              alt="Studio Apartment 3"
+            />
+          </div>
+          <div class="card-content">
+            <h3>Studio with Terrace</h3>
+            <p>
+              Modern and efficient. Perfect for solo business travelers.
+              Includes private terrace and 24/7 security.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="booking">
+      <h2>Book Your Stay</h2>
+      <iframe
+        src="https://book.lodgify.com/demo"
+        width="100%"
+        height="600"
+        frameborder="0"
+        style="border: 1px solid #ccc; border-radius: 8px"
+      >
+      </iframe>
+    </section>
+
+    <section class="section testimonials" id="testimonials">
+      <h2>What Our Clients Say</h2>
+      <div class="testimonial-cards">
+        <div class="testimonial-card">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/TotalEnergies_logo.svg/320px-TotalEnergies_logo.svg.png"
+            alt="Gas Company Logo"
+            class="client-logo"
+          />
+          <p class="testimonial-text">
+            “The property was spotless and the internet was blazing fast. Great
+            value!”
+          </p>
+          <p class="testimonial-author">– Engineer, Gas Company</p>
+        </div>
+        <div class="testimonial-card">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Maersk_Group_Logo.svg/320px-Maersk_Group_Logo.svg.png"
+            alt="Shipping Company Logo"
+            class="client-logo"
+          />
+          <p class="testimonial-text">
+            “Very comfortable stay for my team during our 3-month shipping
+            project.”
+          </p>
+          <p class="testimonial-author">– Operations Manager, Shipping Firm</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <h2>Visit Us</h2>
+      <p>Strategically located near Port Louis business districts.</p>
+      <iframe
+        src="https://maps.google.com/maps?q=port+louis&t=&z=13&ie=UTF8&iwloc=&output=embed"
+      ></iframe>
+    </section>
+
+    <h3 style="margin-top: 2rem; text-align: center">Have a Question?</h3>
+    <form class="contact-form" action="https://formspree.io/f/xjkrjpaz" method="POST">
+      <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input type="text" name="name" placeholder="Your Name" required />
+      </div>
+      <div class="input-group">
+        <i class="fas fa-envelope"></i>
+        <input type="email" name="email" placeholder="Your Email" required />
+      </div>
+      <div class="input-group">
+        <i class="fas fa-comment-alt"></i>
+        <textarea
+          name="message"
+          placeholder="Your Message"
+          rows="4"
+          required
+        ></textarea>
+      </div>
+      <button type="submit">Send Inquiry</button>
+      <p
+        class="form-status"
+        style="display: none; color: #00695c; margin-top: 1rem"
+      >
+        Thanks! We'll get back to you shortly.
+      </p>
+    </form>
+
+    <section class="section faq" id="faq">
+      <h2>Frequently Asked Questions</h2>
+
+      <details class="faq-item">
+        <summary>Who are your apartments best suited for?</summary>
+        <p>
+          Professionals from shipping, gas, and export industries visiting Port
+          Louis for 1–6 months.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Do you offer long-term rates or corporate packages?</summary>
+        <p>
+          Absolutely. We provide flexible business rates and billing for
+          extended corporate stays.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Are utilities and WiFi included?</summary>
+        <p>
+          Yes—all apartments include high-speed WiFi, air conditioning, and
+          essential utilities.
+        </p>
+      </details>
+    </section>
+
+    <footer>
+      <p>Contact: +230 1234 5678 | info@filaoproperty.com</p>
+      <p>© 2025 Filao Property Management</p>
+    </footer>
+
+    <!-- WhatsApp Contact Button -->
+    <div class="whatsapp-float">
+      <a href="https://wa.me/23012345678" target="_blank">
+        <img
+          src="https://img.icons8.com/color/48/000000/whatsapp.png"
+          alt="WhatsApp Chat"
+        />
+      </a>
+    </div>
+
+    <script>
+      const form = document.querySelector(".contact-form");
+      const status = form.querySelector(".form-status");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault(); // Prevent actual submission
+        form.reset();
+        status.style.display = "block";
+        setTimeout(() => {
+          status.style.display = "none";
+        }, 3000);
+      });
+    </script>
+  </body>
+</html>
