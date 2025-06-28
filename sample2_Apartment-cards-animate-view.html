@@ -329,6 +329,112 @@
       .modal-content button:hover {
         background: #148f77;
       }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      #testimonials,
+      #map-section {
+        animation: fadeUp 1s ease forwards;
+      }
+
+      #testimonials {
+        padding: 60px 20px;
+        text-align: center;
+        background: linear-gradient(to right, #ecf0f1, #ffffff);
+      }
+
+      #testimonials h2 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        color: #2c3e50;
+      }
+
+      #testimonials .subtitle {
+        color: #555;
+        margin-bottom: 2rem;
+      }
+
+      .testimonial-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+      }
+
+      .testimonial-card {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        width: 280px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 1s ease forwards;
+      }
+
+      .testimonial-card img {
+        width: 60px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+      }
+
+      .testimonial-card .message {
+        font-style: italic;
+        color: #444;
+      }
+
+      .testimonial-card .author {
+        font-weight: bold;
+        margin: 8px 0 4px;
+        font-size: 1rem;
+      }
+
+      .testimonial-card .author span {
+        font-size: 0.9em;
+        color: #888;
+      }
+
+      .stars {
+        color: gold;
+        font-size: 1.2rem;
+      }
+
+      .google-reviews {
+        margin-top: 50px;
+      }
+
+      .google-reviews iframe {
+        width: 100%;
+        max-width: 600px;
+        height: 350px;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      @media (max-width: 768px) {
+        .testimonial-container {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
       @media (max-width: 600px) {
         header h1 {
@@ -428,6 +534,96 @@
       </div>
     </section>
     <!-- PMS Section End -->
+
+    <section id="testimonials">
+      <h2>Guest Testimonials</h2>
+      <p class="subtitle">
+        What business travelers say about their stay with Filao Property
+        Management.
+      </p>
+
+      <div class="testimonial-container">
+        <div class="testimonial-card">
+          <img
+            src="https://randomuser.me/api/portraits/women/1.jpg"
+            alt="Priya M."
+          />
+          <p class="message">
+            “Great value and super convenient! Stayed 3 months while working at
+            the Port.”
+          </p>
+          <p class="author">Priya M.<br /><span>India</span></p>
+          <div class="stars">★★★★★</div>
+        </div>
+
+        <div class="testimonial-card">
+          <img
+            src="https://randomuser.me/api/portraits/men/3.jpg"
+            alt="Jean-Luc R."
+          />
+          <p class="message">
+            “Very secure and peaceful. Ideal for my 4-month contract in the gas
+            sector.”
+          </p>
+          <p class="author">Jean-Luc R.<br /><span>France</span></p>
+          <div class="stars">★★★★☆</div>
+        </div>
+
+        <div class="testimonial-card">
+          <img
+            src="https://randomuser.me/api/portraits/women/6.jpg"
+            alt="Sarah K."
+          />
+          <p class="message">
+            “Fast Wi-Fi, comfy bed, and super helpful staff. I could easily work
+            remotely.”
+          </p>
+          <p class="author">Sarah K.<br /><span>UK</span></p>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+
+      <!--  <div class="google-reviews">
+          <h3>What People Say on Google</h3>
+          <iframe src="https://widgets.sociablekit.com/google-reviews/iframe/25156036"
+            loading="lazy" title="Google Reviews"></iframe>
+        </div> -->
+    </section>
+
+    <!-- Google Maps Section -->
+    <section
+      id="map-section"
+      style="padding: 50px 20px; text-align: center; background: #f9f9f9"
+    >
+      <h2 style="color: #2c3e50; margin-bottom: 15px">
+        <i class="fas fa-map-marker-alt" style="color: #1abc9c"></i> Find Us in
+        Port Louis
+      </h2>
+      <p style="margin-bottom: 25px; color: #555">
+        Our apartments are centrally located near major ports and offices in
+        Port Louis, Mauritius.
+      </p>
+
+      <div
+        style="
+          max-width: 960px;
+          margin: auto;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        "
+      >
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3761.7472477163193!2d57.49888207474172!3d-20.162248945657224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x217c5041b4e5402f%3A0x6c7a15df52c480d3!2sPort%20Louis!5e0!3m2!1sen!2smu!4v1719540360430"
+          width="100%"
+          height="400"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </section>
 
     <section class="contact">
       <h2>Need a Place for 1–6 Months?</h2>
